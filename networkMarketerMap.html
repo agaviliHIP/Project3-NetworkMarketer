@@ -10,11 +10,16 @@
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
     
     <style>
         html body {
             height: 100%;
             margin: 0;
+            width: 100%;
         }
 
         .flex-container {
@@ -234,11 +239,174 @@
     .checkEnlarge:hover{
         font-size: 18px;
     }
-    </style>
+
+/* MOBILE VERSION */
+
+@media only screen and (max-width: 414px) {
+.largeScreen{
+    display: none;
+}
+.accordion {
+            background-color: #d6cdcdcc;
+            color: white;
+            cursor: pointer;
+            padding: 5px;
+            width: 100%;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 20px;
+            transition: 0.4s;
+            float: right;
+            /* font-weight: bold; */ 
+            margin-bottom: 0 !important;
+            height:100%;
+        }
+
+.panel {
+  background-color: white;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-out;
+  border-top: 0 none;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  text-align: left;
+  display: flex;
+  justify-items: space-around;
+}
+
+.checkEnlarge:hover{
+     font-size: 12px; 
+}
+
+.checkEnlarge{
+padding-left: 2%;
+font-size: 12px; 
+}
+        .basemaps {
+            padding: 6px 8px;
+            font: 12.5px Arial, Helvetica, sans-serif;
+            line-height: 22px;
+            border-radius: 5px;
+        }
+        .basemaps h4 {
+            font-size: 14.5px;
+        }
+        .basemaps i {
+            width: 14px;
+            height: 14px;
+        }
+
+        .legend {
+            padding: 6px 8px;
+            font: 12.5px Arial, Helvetica, sans-serif;
+            background: rgba(255, 255, 255, 0.8);
+            line-height: 22px;
+        }
+
+        .legend h4 {
+            font-size: 14.5px;
+        }
+
+        .legend i {
+            width: 14px;
+            height: 14px;
+        }
+        input[type=checkbox] {
+            position: relative;
+            cursor: pointer;
+        }
+
+.flex-container{
+    display: none;
+}
+
+#mapid {
+    height: 400px;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color:  #d6cdcdee;
+  position: relative;
+}
+
+.topnav #myLinks {
+  display: none;
+}
+
+.topnav a {
+  float: left;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.4s;
+}
+
+.topnav a.icon {
+  float: right;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.active {
+  background-color: #e7e0e0;
+  color: white;
+}
+
+input[type=text] {
+    font-size: 13px;
+}
+}
+
+@media only screen and (min-width: 415px) {
+.smallScreen{
+    display: none;
+}
+.topnav{
+    display: none;
+}
+}
+</style>
 </head>
 <body>
-    
-    <!-- LANGUAGE BUTTONS -->
+        <div class="topnav">
+                <div id="myLinks">
+                <a href="#English">English</a>
+                <a href="#Espanol">Español</a>
+                <a href="#Francais">Français</a>
+                </div>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                  <i class="fa fa-bars"></i>
+                </a>
+              </div>
+
+              <script>
+                    function myFunction() {
+                      var x = document.getElementById("myLinks");
+                      if (x.style.display === "block") {
+                        x.style.display = "none";
+                      } else {
+                        x.style.display = "block";
+                      }
+                    }
+                    </script>
+                   
+<script>
+
+
+
+
+
+
+</script>
+   <!-- DESKTOP/LAPTOP CODE -->
+   <!-- LANGUAGE BUTTONS -->
     <div class="flex-container" style="font-family:arial">
         <div class="theB">
             <button type="button" class="btn">English</button>
@@ -306,6 +474,7 @@
 
             var addy = document.getElementById("myInput");
         </script>
+        <div class = "largeScreen">
         <div class="flex-container" style="font-family:arial">
             <div class= "categories">Infrastructure</div>
             <div class= "categories">Fixed Coverage</div>
@@ -345,6 +514,56 @@
                 </form>
             </div>
         </div>
+        <sa-footer><div class="page-footer"><div class="row"><div class="col-xs-12 col-sm-6 ctr-title footer-title"><span class="txt-color-white">InfraNav Locator™ © HIP Consult, 2019 | </span> &nbsp; <a href="https://www.infranav.com/infralocator-agreement" target="_blank">Terms of Use</a><span class="txt-color-white"> | [beta] loc-1.1.5 | ngx-7.2.15</span></div></div></div></sa-footer>
 
+
+
+
+    </div>
+    
+    <div class = "smallScreen">
+    <button class="accordion">Infrastructure</button>
+                <div class="panel">
+                
+             <div class = "checkEnlarge">  <input type="checkbox" name="vehicle1" value="Fibers"> Fibers<br></div> 
+             <div class = "checkEnlarge"><input type="checkbox" name="vehicle2" value="Data centers"> Data centers<br></div> 
+             <div class = "checkEnlarge"><input type="checkbox" name="vehicle3" value="IXPs"> IXPs<br></div> 
+             <div class = "checkEnlarge"><input type="checkbox" name="vehicle3" value="Cell Towers">Cell Towers<br></div> 
+        </div>
+
+    <button class="accordion">Fixed Coverage</button>
+    <div class="panel">
+    
+    <div class = "checkEnlarge"><input type="checkbox" name="vehicle1" value="Fibers"> Long distance<br></div>
+    <div class = "checkEnlarge"><input type="checkbox" name="vehicle2" value="Data centers"> Metro<br></div>
+    <div class = "checkEnlarge"><input type="checkbox" name="vehicle3" value="IXPs"> Access<br></div>
+</div>
+
+    <button class="accordion">Mobile Coverage</button>
+    <div class="panel">
+    
+    <div class = "checkEnlarge"><input type="checkbox" name="vehicle1" value="Fibers"> 2G Coverage<br></div>
+    <div class = "checkEnlarge"><input type="checkbox" name="vehicle2" value="Data centers"> 3G Coverages<br></div>
+    <div class = "checkEnlarge"><input type="checkbox" name="vehicle3" value="IXPs"> 4G Coverage<br></div>
+</div>
+
+<!-- MOBILE VERSION SCRIPT -->
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+        } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+    });
+}
+</script>
+</div>
 </body>
 </html>
