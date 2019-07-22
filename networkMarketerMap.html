@@ -20,8 +20,12 @@
             height: 100%;
             margin: 0;
             width: 100%;
+            min-height: 100vh;
+            height: 100%;
+            overflow: auto;
         }
 
+     
         .flex-container {
             display: flex;
             /* flex-wrap: nowrap; */
@@ -66,7 +70,7 @@
             flex: 1 1 0;
             /* display: block; */
             position: relative;
-            
+            margin-bottom: 2px;
         }
 
         /* ACTUAL CHECKBOX CSS */
@@ -240,6 +244,45 @@
         font-size: 18px;
     }
 
+.ctr-title {
+    display: block;
+    margin: auto;
+    float: none;
+    height: 100%;
+}
+
+.footer-title {
+    text-align: center;
+}
+
+.col-xs-12 {
+    width: 100%;
+    height: auto; 
+
+    /* changes to keep footer at the bottom */
+    position: fixed;
+    bottom:0;
+    left: 0;
+    right: 0;
+}
+
+body {
+    font-family: "Open Sans",Arial,Helvetica,Sans-Serif;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: black;
+    background-color: #fff;
+    direction: ltr;
+    height: 100%;
+}
+
+.page-footer {
+    display: block;
+    bottom: 0;
+    background: #cccac8;
+    height: 100%;
+}
+
 /* MOBILE VERSION */
 
 @media only screen and (max-width: 414px) {
@@ -247,21 +290,21 @@
     display: none;
 }
 .accordion {
-            background-color: #d6cdcdcc;
-            color: white;
-            cursor: pointer;
-            padding: 5px;
-            width: 100%;
-            border: none;
-            text-align: center;
-            outline: none;
-            font-size: 20px;
-            transition: 0.4s;
-            float: right;
-            /* font-weight: bold; */ 
-            margin-bottom: 0 !important;
-            height:100%;
-        }
+    background-color: #d6cdcdcc;
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    outline: none;
+    font-size: 20px;
+    transition: 0.4s;
+    float: right;
+    /* font-weight: bold; */
+    margin-bottom: 0 !important;
+    min-height:100%;
+}
 
 .panel {
   background-color: white;
@@ -277,22 +320,23 @@
 }
 
 .checkEnlarge:hover{
-     font-size: 12px; 
+font-size: 12px; 
 }
 
 .checkEnlarge{
 padding-left: 2%;
 font-size: 12px; 
 }
-        .basemaps {
-            padding: 6px 8px;
-            font: 12.5px Arial, Helvetica, sans-serif;
-            line-height: 22px;
-            border-radius: 5px;
-        }
+.basemaps {
+    padding: 6px 8px;
+    font: 12.5px Arial, Helvetica, sans-serif;
+    line-height: 22px;
+    border-radius: 5px;
+}
         .basemaps h4 {
             font-size: 14.5px;
         }
+
         .basemaps i {
             width: 14px;
             height: 14px;
@@ -313,6 +357,7 @@ font-size: 12px;
             width: 14px;
             height: 14px;
         }
+
         input[type=checkbox] {
             position: relative;
             cursor: pointer;
@@ -362,8 +407,10 @@ font-size: 12px;
 input[type=text] {
     font-size: 13px;
 }
+
 }
 
+/* TABLET/LAPTOP/DESKTOP VIEW CSS */
 @media only screen and (min-width: 415px) {
 .smallScreen{
     display: none;
@@ -395,16 +442,11 @@ input[type=text] {
                         x.style.display = "block";
                       }
                     }
-                    </script>
+            </script>
                    
 <script>
-
-
-
-
-
-
 </script>
+
    <!-- DESKTOP/LAPTOP CODE -->
    <!-- LANGUAGE BUTTONS -->
     <div class="flex-container" style="font-family:arial">
@@ -420,9 +462,9 @@ input[type=text] {
     </div>
     <br>
     <div class = "box">
-        <form>
+        <!-- <form>
             <input type="text" name="search" id="addyInput" placeholder="  Search for address....">
-        </form>
+        </form> -->
     </div>
     <br>
         <!-- SEARCH BUTTONS FOR NON DESKTOP/LAPTOP DEVICES -->
@@ -490,7 +532,7 @@ input[type=text] {
                  <div class = "checkEnlarge">  <input type="checkbox" name="vehicle1" value="Fibers"> Fibers<br></div> 
                  <div class = "checkEnlarge"><input type="checkbox" name="vehicle2" value="Data centers"> Data centers<br></div> 
                  <div class = "checkEnlarge"><input type="checkbox" name="vehicle3" value="IXPs"> IXPs<br></div> 
-                 <div class = "checkEnlarge"><input type="checkbox" name="vehicle3" value="Cell Towers">Cell Towers<br></div> 
+                 <div class = "checkEnlarge"><input type="checkbox" name="vehicle4" value="Cell Towers">Cell Towers<br></div> 
                 </form>
             </div>
 
@@ -515,12 +557,10 @@ input[type=text] {
             </div>
         </div>
         <sa-footer><div class="page-footer"><div class="row"><div class="col-xs-12 col-sm-6 ctr-title footer-title"><span class="txt-color-white">InfraNav Locator™ © HIP Consult, 2019 | </span> &nbsp; <a href="https://www.infranav.com/infralocator-agreement" target="_blank">Terms of Use</a><span class="txt-color-white"> | [beta] loc-1.1.5 | ngx-7.2.15</span></div></div></div></sa-footer>
-
-
-
-
     </div>
     
+
+    <!-- MOBILE VERSION ACCORDION AND FOOTER CODE -->
     <div class = "smallScreen">
     <button class="accordion">Infrastructure</button>
                 <div class="panel">
@@ -546,6 +586,7 @@ input[type=text] {
     <div class = "checkEnlarge"><input type="checkbox" name="vehicle2" value="Data centers"> 3G Coverages<br></div>
     <div class = "checkEnlarge"><input type="checkbox" name="vehicle3" value="IXPs"> 4G Coverage<br></div>
 </div>
+<sa-footer><div class="page-footer"><div class="row"><div class="col-xs-12 col-sm-6 ctr-title footer-title"><span class="txt-color-white">InfraNav Locator™ © HIP Consult, 2019 | </span> <a href="https://www.infranav.com/infralocator-agreement" target="_blank">Terms of Use</a><span class="txt-color-white"> | [beta] loc-1.1.5 | ngx-7.2.15</span></div></div></div></sa-footer>
 
 <!-- MOBILE VERSION SCRIPT -->
 <script>

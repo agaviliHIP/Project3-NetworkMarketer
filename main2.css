@@ -1,0 +1,408 @@
+        html body {
+            height: 100%;
+            margin: 0;
+            width: 100%;
+            min-height: 100vh;
+            height: 100%;
+            overflow: auto;
+        }
+
+
+        .flex-container {
+            display: flex;
+            /* flex-wrap: nowrap; */
+            background-color: white;
+            height: 50px;
+            flex-direction: row;
+        }
+
+        .flex-container>div {
+            background-color: #d6cdcdee;
+            margin: 1px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 18px;
+            flex: 1 1 0;
+            /* box-shadow: 0 2px 2px #000; */
+            color: rgba(255, 255, 255, 0.897);
+            border-radius: 5px;
+        }
+
+        /* CHECKLIST CONTAINER CSS */
+        .flex-checklist-container {
+            display: flex;
+            /* flex-wrap: nowrap; */
+            background-color: white;
+            height: 250px;
+            width: 100%;
+            flex-direction: row;
+            position: relative;
+            border-radius: 5px;
+        }
+
+        .flex-checklist-container>div {
+            background-color: #d6cdcdee;
+            margin-top: 1px;
+            padding-left: 10%;
+            padding-right: 10%;
+            /* ^originally 250px */
+            text-align: left;
+            line-height: 35px;
+            font-size: 16px;
+            flex: 1 1 0;
+            /* display: block; */
+            position: relative;
+            margin-bottom: 2px;
+        }
+
+        /* ACTUAL CHECKBOX CSS */
+        input[type=checkbox] {
+            position: relative;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        input[type=checkbox]:before {
+            content: "";
+            display: block;
+            position: relative;
+            width: 16px;
+            height: 16px;
+            top: 0;
+            left: 0;
+            border: 2px solid #555555;
+            border-radius: 1px;
+            background-color: #d6cdcdcc;
+        }
+
+        input[type=checkbox]:checked:after {
+            content: "";
+            display: block;
+            width: 5px;
+            height: 10px;
+            border: solid black;
+            border-width: 0 2px 2px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+            position: absolute;
+            top: 2px;
+            left: 6px;
+        }
+
+        /* END OF CHECKBOX CSS */
+        .btn {
+            background-color: Transparent;
+            outline: none;
+            height: 40px;
+            flex-direction: row;
+            width: 20%;
+            font-size: 18px;
+        }
+
+        .theB:hover {
+            background-color: #e7e0e0;
+        }
+
+        .categories:hover {
+            background-color: #e7e0e0;
+        }
+
+        input[type=text] {
+            width: 60%;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 17px;
+            background-color: white;
+            background-image: url('searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+
+        input[type=text]:focus {
+            width: 100%;
+        }
+
+        #mapid {
+            height: 500px;
+            width: 100%;
+            z-index: -1;
+        }
+
+        .legend {
+            padding: 6px 8px;
+            font: 14px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            line-height: 24px;
+            color: #555;
+        }
+
+        .legend h4 {
+            text-align: center;
+            font-size: 16px;
+            margin: 2px 12px 8px;
+            color: #777;
+        }
+
+        .legend span {
+            position: relative;
+            bottom: 3px;
+        }
+
+        .legend i {
+            width: 18px;
+            height: 18px;
+            float: left;
+            margin: 0 8px 0 0;
+            opacity: 0.7;
+        }
+
+        .legend i.icon {
+            background-size: 18px;
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        /* BASEMAPS LEGENDS CSS */
+        .basemaps {
+            padding: 6px 8px;
+            font: 14px Arial, Helvetica, sans-serif;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.8);
+            line-height: 24px;
+            border-radius: 5px;
+            color: #555;
+        }
+
+        .basemaps h4 {
+            text-align: center;
+            font-size: 16px;
+            margin: 2px 12px 8px;
+            color: #777;
+        }
+
+        .basemaps span {
+            position: relative;
+            bottom: 3px;
+        }
+
+        .basemaps i {
+            width: 18px;
+            height: 18px;
+            float: left;
+            margin: 0 8px 0 0;
+            opacity: 0.7;
+        }
+
+        .basemaps i.icon {
+            background-size: 18px;
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        .firstColcheck {
+            display: inline-block;
+            position: fixed;
+        }
+
+        #addyInput {
+            background-image: url('http://i47.tinypic.com/r02vbq.png');
+            background-repeat: no-repeat;
+            background-position: left center;
+            outline: 0;
+            position: center;
+        }
+
+        .box {
+            width: 100%;
+            text-align: center;
+        }
+
+        .checkEnlarge:hover {
+            font-size: 18px;
+        }
+
+
+        .ctr-title {
+            display: block;
+            margin: auto;
+            float: none;
+            height: 100%;
+        }
+
+        .footer-title {
+            text-align: center;
+        }
+
+        .col-xs-12 {
+            width: 100%;
+            height: auto;
+            /* min-height:12vh; */
+        }
+
+        body {
+            font-family: "Open Sans", Arial, Helvetica, Sans-Serif;
+            font-size: 13px;
+            line-height: 1.42857143;
+            color: black;
+            background-color: #fff;
+            direction: ltr;
+            height: 100%;
+            margin: 0;
+        }
+
+        .page-footer {
+/*            display: block;*/
+/*            position: absolute;*/
+            bottom: 0;
+            height: 2em;
+            background: #cccac8;
+            height: 100%;
+        }
+
+        /* MOBILE VERSION */
+
+        @media only screen and (max-width: 414px) {
+            .largeScreen {
+                display: none;
+            }
+
+            .accordion {
+                background-color: #d6cdcdcc;
+                color: white;
+                cursor: pointer;
+                padding: 5px;
+                width: 100%;
+                border: none;
+                text-align: center;
+                outline: none;
+                font-size: 20px;
+                transition: 0.4s;
+                float: right;
+                /* font-weight: bold; */
+                margin-bottom: 0 !important;
+                height: 100%;
+            }
+
+            .panel {
+                background-color: white;
+                overflow: hidden;
+                max-height: 0;
+                transition: max-height 0.3s ease-out;
+                border-top: 0 none;
+                margin-bottom: 0px;
+                margin-top: 0px;
+                text-align: left;
+                display: flex;
+                justify-items: space-around;
+            }
+
+            .checkEnlarge:hover {
+                font-size: 12px;
+            }
+
+            .checkEnlarge {
+                padding-left: 2%;
+                font-size: 12px;
+            }
+
+            .basemaps {
+                padding: 6px 8px;
+                font: 12.5px Arial, Helvetica, sans-serif;
+                line-height: 22px;
+                border-radius: 5px;
+            }
+
+            .basemaps h4 {
+                font-size: 14.5px;
+            }
+
+            .basemaps i {
+                width: 14px;
+                height: 14px;
+            }
+
+            .legend {
+                padding: 6px 8px;
+                font: 12.5px Arial, Helvetica, sans-serif;
+                background: rgba(255, 255, 255, 0.8);
+                line-height: 22px;
+            }
+
+            .legend h4 {
+                font-size: 14.5px;
+            }
+
+            .legend i {
+                width: 14px;
+                height: 14px;
+            }
+
+            input[type=checkbox] {
+                position: relative;
+                cursor: pointer;
+            }
+
+            .flex-container {
+                display: none;
+            }
+
+            #mapid {
+                height: 400px;
+            }
+
+            .topnav {
+                overflow: hidden;
+                background-color: #d6cdcdee;
+                position: relative;
+            }
+
+            .topnav #myLinks {
+                display: none;
+            }
+
+            .topnav a {
+                float: left;
+                color: white;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 14px;
+                transition: 0.4s;
+            }
+
+            .topnav a.icon {
+                float: right;
+            }
+
+            .topnav a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+
+            .active {
+                background-color: #e7e0e0;
+                color: white;
+            }
+
+            input[type=text] {
+                font-size: 13px;
+            }
+
+        }
+
+        /* TABLET/LAPTOP/DESKTOP VIEW CSS */
+        @media only screen and (min-width: 415px) {
+            .smallScreen {
+                display: none;
+            }
+
+            .topnav {
+                display: none;
+            }
+        }

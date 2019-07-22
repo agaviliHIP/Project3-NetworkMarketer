@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin=""/>
+    <style>
+        html body{
+           height:100%;
+           margin: 0;
+        }
+    .flex-container {
+  display: flex;
+  /* flex-wrap: nowrap; */
+  background-color: rgb(0, 0, 0);
+  height: 50px;
+  flex-direction: row;
+}
+
+    .flex-container > div {
+  background-color: #d6cdcdcc;
+  margin: .002px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 18px;
+  flex: 1 1 0;
+  box-shadow: 0 2px 2px #000;
+
+}
+
+/* CHECKLIST CONTAINER CSS */
+.flex-checklist-container {
+  display: flex;
+  /* flex-wrap: nowrap; */
+  background-color: rgb(0, 0, 0);
+  height: 250px;
+  width: 100%;
+  flex-direction: row;
+  position: relative;
+  box-shadow: 0 2px 2px #000;
+}
+
+.flex-checklist-container > div {
+  background-color: #d6cdcdcc;
+  margin-top: 1px;
+  padding-left: 12%;
+  /* ^originally 250px */
+  text-align: left;
+  line-height: 35px;
+  font-size: 16px;
+  flex: 1 1 0;
+  /* display: block; */
+  position: relative;
+  }
+
+  /* ACTUAL CHECKBOX CSS */
+  input[type=checkbox] {
+         position: relative;
+	       cursor: pointer;
+    }
+    
+  input[type=checkbox]:before {
+         content: "";
+         display: block;
+         position: relative;
+         width: 16px;
+         height: 16px;
+         top: 0;
+         left: 0;
+         border: 2px solid #555555;
+         border-radius: 1px;
+         background-color: #d6cdcdcc;
+}
+
+    input[type=checkbox]:checked:after {
+         content: "";
+         display: block;
+         width: 5px;
+         height: 10px;
+         border: solid black;
+         border-width: 0 2px 2px 0;
+         -webkit-transform: rotate(45deg);
+         -ms-transform: rotate(45deg);
+         transform: rotate(45deg);
+         position: absolute;
+         top: 2px;
+         left: 6px;
+}
+  /* END OF CHECKBOX CSS */
+.btn{
+background-color: Transparent;
+outline:none;
+height: 40px;
+flex-direction: row;
+width: 20%;
+font-size: 18px;
+font-weight:bold;
+}
+
+.theB:hover{
+    background-color: #f8eaeadc;
+}
+
+input[type=text] {
+  width: 75%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 17px;
+  background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 100%;
+}
+#mapid { 
+    height: 500px; 
+    width: 100%;
+    z-index: -1;
+    }
+
+.legend {
+  padding: 6px 8px;
+  font: 14px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  line-height: 24px;
+  color: #555;
+}
+
+.legend h4 {
+  text-align: center;
+  font-size: 16px;
+  margin: 2px 12px 8px;
+  color: #777;
+}
+
+.legend span {
+  position: relative;
+  bottom: 3px;
+}
+
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin: 0 8px 0 0;
+  opacity: 0.7;
+}
+
+.legend i.icon {
+  background-size: 18px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+/* BASEMAPS LEGENDS CSS */
+.basemaps {
+  padding: 6px 8px;
+  font: 14px Arial, Helvetica, sans-serif;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.8);
+  line-height: 24px;
+  border-radius: 5px;
+  color: #555;
+}
+.basemaps h4 {
+  text-align: center;
+  font-size: 16px;
+  margin: 2px 12px 8px;
+  color: #777;
+}
+
+.basemaps span {
+  position: relative;
+  bottom: 3px;
+}
+
+.basemaps i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin: 0 8px 0 0;
+  opacity: 0.7;
+}
+
+.basemaps i.icon {
+  background-size: 18px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+/* COVERAGE WINDOW "LEGEND" */
+.covWindow {
+  padding: 6px 8px;
+  font: 14px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  line-height: 24px;
+  color: #555;
+}
+.covWindow h4 {
+  text-align: center;
+  font-size: 16px;
+  margin: 2px 12px 8px;
+  color: #777;
+}
+
+.covWindow span {
+  position: relative;
+  bottom: 3px;
+}
+
+.covWindow i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin: 0 8px 0 0;
+  opacity: 0.7;
+}
+
+.covWindow i.icon {
+  background-size: 18px;
+  background-color: #ffffff;
+}
+
+.firstColcheck{
+  display: inline-block;
+  position:fixed;
+}
+#addyInput{
+  background-image:url('http://i47.tinypic.com/r02vbq.png');
+background-repeat:no-repeat;
+background-position:left center;outline:0;
+}
+
+</style>
+</head>
+<body>
+    <!-- LANGUAGE BUTTONS -->
+    <div class="flex-container" style="font-family:arial">
+            <div class = "theB">
+            <button type="button" class="btn">English</button>
+            </div>
+            <div class = "theB">
+            <button type="button" class="btn">Español</button>
+            </div>
+            <div class = "theB">
+            <button type="button" class="btn">Français</button>
+            </div>
+</div>
+<p>
+<form>
+<input type="text" name="search" id= "addyInput" placeholder="  Search for address....">
+</form>
+<!-- SEARCH BUTTONS FOR NON DESKTOP/LAPTOP DEVICES -->
+<!-- <button type="submit"><i class="fa fa-search">SEARCH</i></button> -->
+    <!-- PLACEHOLDER MAP -->
+<p>
+  <div id="mapid"></div>
+</p>
+
+<!-- SCRIPT -->
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="crossorigin="">
+</script>
+        <script>
+var map = L.map("mapid").setView([55.67, 12.57], 7);
+L.tileLayer(
+  "https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg"
+).addTo(map);
+var legend = L.control({ position: "bottomleft" });
+
+legend.onAdd = function(map) {
+  var div = L.DomUtil.create("div", "legend");
+  div.innerHTML += "<h4>Legend</h4>";
+  div.innerHTML += '<i style="background: #477AC2"></i><span>Data Centers</span><br>';
+  div.innerHTML += '<i style="background: #448D40"></i><span>IXPs</span><br>';
+  div.innerHTML += '<i style="background: #E6E696"></i><span>Sale Centers</span><br>';
+  div.innerHTML += '<i style="background: #E8E6E0"></i><span>2G towers</span><br>';
+  div.innerHTML += '<i style="background: #FFEFFF"></i><span>3G towers</span><br>';
+  div.innerHTML += '<i style="background: #FFFFFF"></i><span>4G towers</span><br>';
+  div.innerHTML += '<i style="background: #FFFFFF"></i><span>Deployed</span><br>';
+  div.innerHTML += '<i style="background: #FFFFFF"></i><span>In Progress</span><br>';
+  div.innerHTML += '<i style="background: #FFFFFF"></i><span>Proposed</span><br>';
+  return div;
+};
+
+legend.addTo(map);
+
+var basemaps = L.control({ position: "bottomright" });
+basemaps.onAdd = function(map) {
+  var div = L.DomUtil.create("div", "basemaps");
+  div.innerHTML += "<h4>Basemaps</h4>";
+  div.innerHTML += '<i style="background: #477AC2"></i><span>Light v9</span><br>';
+  div.innerHTML += '<i style="background: #448D40"></i><span>Dark v9</span><br>';
+  div.innerHTML += '<i style="background: #E6E696"></i><span>Sattelite v9</span><br>';
+  div.innerHTML += '<i style="background: #E6E696"></i><span>Carto Positron</span><br>';
+  div.innerHTML += '<i style="background: #E6E696"></i><span>Custom 1</span><br>';
+  div.innerHTML += '<i style="background: #E6E696"></i><span>Custom 2</span><br>';
+  return div;
+};
+basemaps.addTo(map);
+
+var addy = document.getElementById("myInput");
+var customControl =  L.Control.extend({
+
+options: {
+  position: 'topleft'
+},
+
+onAdd: function (map) {
+  var container = L.DomUtil.create('input');
+  container.id = "divOnMap";
+  container.type="button";
+  container.value = "The address: " + addy+" , has coverage";
+
+  container.style.backgroundColor = 'white';
+  container.style.backgroundSize = "200px 50px";
+  container.style.width = '200px';
+  container.style.height = '50px';
+
+  return container;
+}
+});
+
+map.addControl(new customControl());
+
+$(document).on('change', 'input', function() {
+console.log('changed');
+var newVal = $('input').val();
+$('#divOnMap').val(newVal);
+});
+</script>
+
+<div class="flex-container" style="font-family:arial">
+            <div>Infrastructure</div>
+            <div>Fixed Coverage</div>
+            <div>Mobile Coverage</div>
+</div>
+
+<!-- 3 COLUMNS OF CHECKLISTS -->
+<div class = "flex-checklist-container" style="font-family:arial">
+    <!-- column 1 -->
+        <div class = "firstColcheck">
+    <form action="/action_page.php">
+        <input type="checkbox" name="vehicle1" value="Fibers"> Fibers<br>
+        <input type="checkbox" name="vehicle2" value="Data centers"> Data centers<br>
+        <input type="checkbox" name="vehicle3" value="IXPs" > IXPs<br>
+        <input type="checkbox" name="vehicle3" value="Cell Towers" >Cell Towers<br>
+    </form>
+        </div>
+
+    <!-- column 2 -->
+        <div>
+                <form action="/action_page.php">
+                    <input type="checkbox" name="vehicle1" value="Fibers"> Long distance<br>
+                    <input type="checkbox" name="vehicle2" value="Data centers"> Metro<br>
+                    <input type="checkbox" name="vehicle3" value="IXPs"> Access<br>
+                </form>
+        </div>
+
+    <!-- column 3 -->
+        <div>
+                <form action="/action_page.php">
+                    <input type="checkbox" name="vehicle1" value="Fibers"> 2G Coverage<br>
+                    <input type="checkbox" name="vehicle2" value="Data centers"> 3G Coverages<br>
+                    <input type="checkbox" name="vehicle3" value="IXPs"> 4G Coverage<br>
+                </form>
+        </div>
+</div>
+
+
+
+
+</body>
+</html>
