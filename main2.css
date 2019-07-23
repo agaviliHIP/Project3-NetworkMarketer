@@ -28,6 +28,28 @@
             border-radius: 5px;
         }
 
+
+        .flex-container2 {
+            display: flex;
+            /* flex-wrap: nowrap; */
+            background-color: white;
+            height: 50px;
+            flex-direction: row;
+        }
+
+        .flex-container2>div {
+            background-color: #d6cdcdee;
+            margin: 1px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 18px;
+            flex: 1 1 0;
+            /* box-shadow: 0 2px 2px #000; */
+            color: rgba(255, 255, 255, 0.897);
+            border-radius: 5px;
+        }
+
+
         /* CHECKLIST CONTAINER CSS */
         .flex-checklist-container {
             display: flex;
@@ -106,6 +128,9 @@
 
         .categories:hover {
             background-color: #e7e0e0;
+        }
+        .categories{
+            text-align: center;
         }
 
         input[type=text] {
@@ -401,7 +426,6 @@
             .smallScreen {
                 display: none;
             }
-
             .topnav {
                 display: none;
             }
