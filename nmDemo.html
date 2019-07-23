@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style>
+    #row1{
+        background-color: rgb(197, 105, 68);
+        height: 50px;
+    }
+
+    #col1{
+        background-color: rgb(219, 181, 166);
+        margin: 4px;
+        text-align: center;
+    }
+
+    #row2{
+        background-color: rgb(161, 142, 142);
+        text-align: center;
+        height: 600px;
+    }
+
+    #row3{
+        background-color: rgb(209, 165, 180);
+        height: 200px;
+    }
+
+    #row4{
+        background-color: rgb(150, 196, 211);
+        height: 50px;
+        text-align: center;
+        position: fixed;
+    /* ^maybe change to absolute? */
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 1rem;
+    }
+
+   #subRow{
+
+    margin: 4px;
+    background-color: rgb(230, 230, 230);
+    margin-bottom: 3px;
+
+   }
+
+   #subRow2{
+    margin: 4px;
+    margin-bottom: 10px;
+    background-color: rgb(230, 230, 230);
+    height: 100px;
+   }
+      
+</style>
+</head>
+
+<body>
+        <div class="container-fluid">
+                <!-- ROW 1 -->
+                <div class="row" id = "row1">
+                  <div class="col" id = "col1" >
+                1 of 3
+                  </div>
+                  <div class="col" id = "col1">
+                2 of 3
+                  </div>
+                  <div class="col" id = "col1">
+                3 of 3
+                  </div>
+                </div>
+              
+            
+
+        <!-- ROW 2 -->
+
+        <div class="row"id = "row2">
+             SPACE
+            </div>
+
+        <!-- ROW 3 -->
+        
+        <div class="row" id = "row3">
+                <div class="col">
+                        <div class="row" id = "subRow"> ROW 1</div>
+                        <div class="row" id = "subRow2"> ROW 2</div>
+                </div>
+                <div class="col">
+                  
+                        <div class="row" id = "subRow"> ROW 1</div>
+                        <div class="row" id = "subRow2"> ROW 2</div>
+                </div>
+                <div class="col">
+                        <div class="row" id = "subRow"> ROW 1</div>
+                        <div class="row" id = "subRow2"> ROW 2</div>
+                </div>
+              </div>
+           
+
+              <div class="row" id = "row4">
+            <div class="col">footer</div>
+
+
+          <!-- ROW 4 -->    
+            </div>
+              <!-- ENDING CONTAINER TAG -->
+        </div>
+</body>
+
+</html>
