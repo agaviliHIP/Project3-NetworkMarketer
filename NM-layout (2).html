@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!--    <link rel="stylesheet" href="css/main.css">-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        html {
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            position: relative;
+            min-height: 100%;
+            margin: 0;
+            padding-bottom: 6rem;
+        }
+
+/*
+        .container-fluid {
+            background: #eee;
+        }
+*/
+
+        div>h3 {
+            text-align: center;
+            margin: 0.5em 0 0.5em 0;
+        }
+
+        div>h4 {
+            text-align: center;
+        }
+
+        .map {
+            /*            height: 500px;*/
+            min-height: 500px;
+            height: 75vh;
+            background: #ddd;
+        }
+
+        .footer {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 1rem;
+            background-color: grey;
+            color: white;
+            text-align: center;
+        }
+        
+        div>.btn {
+/*            width: 30%;*/
+            height: 100%;
+            margin: 0.5em 0 0.5em 0;
+/*            font-size: 24px;*/
+        }
+        
+        .btn-toolbar {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        input[type=checkbox]:before {
+            content: "";
+            display: block;
+            position: relative;
+            width: 16px;
+            height: 16px;
+            top: 0;
+            left: 0;
+            border: 2px solid #555555;
+            border-radius: 1px;
+            background-color: #d6cdcdcc;
+            
+        }
+
+        input[type=checkbox]:checked:after {
+            content: "";
+            display: block;
+            width: 5px;
+            height: 10px;
+            border: solid black;
+            border-width: 0 1px 1px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+            position: absolute;
+            top: 2px;
+            left: 6px;
+        }
+
+        
+        #extraspace{
+            opacity: 0;
+        }
+        
+        @media only screen and (max-width: 320px) {
+
+            .checkEnlarge {
+                font-size: 11px;
+                padding-left: 2%;
+            }
+
+            input[type=checkbox] {
+            position: relative;
+            cursor: pointer;
+            margin-right: 1px;
+        }
+
+        .largeScreen {
+                display: none;
+            }
+
+        .accordion {
+                background-color: #d6cdcdcc;
+                color: white;
+                cursor: pointer;
+                padding: 5px;
+                width: 100%;
+                border: none;
+                text-align: center;
+                outline: none;
+                font-size: 20px;
+                transition: 0.4s;
+                float: right;
+                margin-bottom: 0 !important;
+                height: 100%;
+            }
+
+            .panel {
+                background-color: white;
+                overflow: hidden;
+                max-height: 0;
+                transition: max-height 0.3s ease-out;
+                border-top: 0 none;
+                margin-bottom: 0px;
+                margin-top: 0px;
+                text-align: left;
+                display: flex;
+                justify-items: space-around;
+                height: 30em;
+            }
+
+
+
+        input[type=checkbox] {
+            position: relative;
+            cursor: pointer;
+            margin-right: 3px;
+        }
+}
+
+
+        @media (max-width: 414px) and (min-width: 321px){
+            .largeScreen {
+                display: none;
+            }
+
+            .accordion {
+                background-color: #d6cdcdcc;
+                color: white;
+                cursor: pointer;
+                padding: 5px;
+                width: 100%;
+                border: none;
+                text-align: center;
+                outline: none;
+                font-size: 20px;
+                transition: 0.4s;
+                float: right;
+                margin-bottom: 0 !important;
+                height: 100%;
+            }
+
+            .panel {
+                background-color: white;
+                overflow: hidden;
+                max-height: 0;
+                transition: max-height 0.3s ease-out;
+                border-top: 0 none;
+                margin-bottom: 0px;
+                margin-top: 0px;
+                text-align: left;
+                display: flex;
+                justify-items: space-around;
+                height: 30em;
+            }
+
+            .checkEnlarge {
+                padding-left: 2%;
+                font-size: 12px;
+            }
+
+             #extraspace{
+            opacity: 0;
+            }
+
+            input[type=checkbox] {
+            position: relative;
+            cursor: pointer;
+            margin-right: 3px;
+        }
+
+        }
+
+        @media only screen and (min-width: 415px) {
+            .smallScreen{
+                display: none;
+            }
+
+            input[type=checkbox] {
+            position: relative;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+    }
+
+.nav nav-tabs{
+    font-size:10px;
+}
+
+
+/*
+        #forms {
+            max-width: 1000px;
+            display: block;
+            margin: auto;
+        }
+*/
+
+.card-header{
+    text-align: center;
+}
+
+#bottomCol{
+    /* padding: 3em; */
+    padding-left: 5em;
+    padding-right: 5em;
+}
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        
+        <!-- LANGUAGES -->
+
+    <!-- <div class="container-fluid">
+            <ul class="nav nav-pills">
+              <li class="active"><a data-toggle="pill" href="#home">Choose a Language</a></li>
+              <li><a data-toggle="pill" href="#menu1">English</a></li>
+              <li><a data-toggle="pill" href="#menu2">Español</a></li>
+              <li><a data-toggle="pill" href="#menu3">Français</a></li>
+    </div> -->
+
+        <div class="row">
+            <div class="btn-toolbar">
+            <div class="btn-group btn-group-lg" role="group" aria-label="language-selector">
+                <button type="button" class="btn btn-secondary">English</button>
+                <button type="button" class="btn btn-secondary">Español</button>
+                <button type="button" class="btn btn-secondary">Français</button>
+            </div>
+            </div>
+        </div>
+
+        <!-- MAP CODE -->
+        <div class="row">
+            <div class="map"></div>
+        </div>
+
+        <!-- MOBILE VERSION ACCORDION CODE -->
+        <div class = "smallScreen">
+                <div class="row" id = "extraspace">space</div>
+            <button class="accordion">Infrastructure</button>
+        <div class="panel">
+
+            <div class="checkEnlarge"><input type="checkbox" name="vehicle1" value="Fibers"> Fibers<br></div>
+            <div class="checkEnlarge"><input type="checkbox" name="vehicle2" value="Data centers"> Data centers<br></div>
+            <div class="checkEnlarge"><input type="checkbox" name="vehicle3" value="IXPs"> IXPs<br></div>
+            <div class="checkEnlarge"><input type="checkbox" name="vehicle3" value="Cell Towers">Cell Towers<br></div>
+        </div>
+
+        <button class="accordion">Fixed Coverage</button>
+        <div class="panel">
+
+            <div class="checkEnlarge"><input type="checkbox" name="vehicle1" value="Fibers"> Long distance<br></div>
+            <div class="checkEnlarge"><input type="checkbox" name="vehicle2" value="Data centers"> Metro<br></div>
+            <div class="checkEnlarge"><input type="checkbox" name="vehicle3" value="IXPs"> Access<br></div>
+        </div>
+
+        <button class="accordion">Mobile Coverage</button>
+        <div class="panel">
+
+            <div class="checkEnlarge"><input type="checkbox" name="vehicle1" value="Fibers"> 2G Coverage<br></div>
+            <div class="checkEnlarge"><input type="checkbox" name="vehicle2" value="Data centers"> 3G Coverage<br></div>
+            <div class="checkEnlarge"><input type="checkbox" name="vehicle3" value="IXPs"> 4G Coverage<br></div>
+        </div>
+        </div>
+
+<div class = "largeScreen">
+        <div class="row" id = "extraspace">space</div>
+    <div id="forms" class="row">
+        <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 data-toggle">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4>Infrastructure</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <form class="form-check">
+                    <fieldset>
+
+                <div class = "checkbox">
+                    <label for="infra-1">
+                            <input type="checkbox" name="infra-1" value="Fiber">Fiber<br>
+                    </label>
+                </div>
+
+                <div class = "checkbox">
+                        <label for="infra-2">
+                            <input type="checkbox" name="infra-2" value="Data Centers">Data Centers<br>
+                        </label>
+                </div>
+
+                <div class = "checkbox">
+                        <label for="infra-3">
+                            <input type="checkbox" name="infra-3" value="IXPs">IXPs<br>
+                        </label>
+                </div>
+
+                <div class = "checkbox">
+                        <label for="infra-4">
+                            <input type="checkbox" name="infra-4" value="Cell Towers">Cell Towers<br>
+                        </label>
+                </div>
+            </fieldset>
+        </form>
+        </div>
+    </div>
+
+</div> -->
+<!-- </div> -->
+
+
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 data-toggle" id = "bottomCol">
+        <div class="row" id = "infraColumn">
+<form class= "form-check">
+        <fieldset>
+<div class="card" style="width: 40rem;">
+    
+        <div class="card-header">
+          Infrastructure
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><input type="checkbox" name="infra-1" value="Fiber">Fiber</li>
+          <li class="list-group-item"><input type="checkbox" name="infra-2" value="Data Centers">Data Centers</li>
+          <li class="list-group-item"><input type="checkbox" name="infra-3" value="IXPs">IXPs</li>
+          <li class="list-group-item"><input type="checkbox" name="infra-4" value="Cell Towers">Cell Towers</li>
+        </ul>
+      </div>
+    </fieldset>
+</form>
+</div>
+</div>
+
+
+
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 data-toggle"id = "bottomCol">
+        <div class="row">
+<form class= "form-check">
+        <fieldset>
+<div class="card" style="width: 40rem;">
+        <div class="card-header">
+            Fixed Coverage
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><input type="checkbox" name="colTwo1" value="Long Distance">Long Distance</li>
+          <li class="list-group-item"><input type="checkbox"name="colTwo2" value="Metro">Metro</li>
+          <li class="list-group-item"><input type="checkbox" name="colTwo3" value="Access">Access</li>
+        </ul>
+      </div>
+    </fieldset>
+</form>
+</div>
+</div>
+
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 data-toggle" id = "bottomCol">
+        <div class="row">
+<form class= "form-check">
+        <fieldset>
+<div class="card" style="width: 40rem;">
+        <div class="card-header">
+            Mobile Coverage
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><input type="checkbox" name="colThree1" value="2G">2G</li>
+          <li class="list-group-item"><input type="checkbox" name="colThree2" value="3G">3G</li>
+          <li class="list-group-item"><input type="checkbox" name="colThree3" value="4G">4G</li>
+        </ul>
+      </div>
+    </fieldset>
+</form>
+</div>
+</div>
+
+
+
+<!-- COLUMN 2!!!!!! -->
+    <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 data-toggle">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4>Fixed Coverage</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form class= "form-check">
+                    <fieldset>
+                            <div class = "checkbox">
+                                    <label for="colTwo1">
+                                        <input type="checkbox" name="colTwo1" value="Long Distance">Long Distance<br>
+                                    </label>
+                                </div>
+                        
+                            <div class = "checkbox">
+                                    <label for="colTwo2">
+                                        <input type="checkbox"name="colTwo2" value="Metro">Metro<br>
+                                    </label>
+                                </div>
+
+                            <div class = "checkbox">
+                                    <label for="colTwo3">
+                                        <input type="checkbox" name="colTwo3" value="Access">Access<br>
+                                    </label>
+                                </div>
+                            </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div> -->
+
+
+        <!-- COLUMN 3!!!!!! -->
+        <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 data-toggle">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4>Mobile Coverage</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <form class= "form-check">
+                        <fieldset>
+                                <div class = "checkbox">
+                                        <label for="colThree1">
+                                            <input type="checkbox" name="colThree1" value="2G">2G<br>
+                                        </label>
+                                    </div>
+                            
+                                <div class = "checkbox">
+                                        <label for="colThree2">
+                                                <input type="checkbox" name="colThree2" value="3G">3G<br>
+                                        </label>
+                                    </div>
+                                
+                                <div class = "checkbox">
+                                        <label for="colThree3">
+                                                <input type="checkbox" name="colThree3" value="4G">4G<br>    
+                                        </label>
+                                    </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+</div>
+
+
+       
+    <div class="footer">InfraNav Network Marketer | Terms of Use</div>
+    <script src="js/main.js"></script>
+</body>
+</html>
